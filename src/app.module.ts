@@ -1,21 +1,16 @@
 import { Module } from '@nestjs/common';
 import { MetricModule } from './metric-tracking/metric-tracking.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeOrmConfig } from './database/database.config';
+import { LoggerModule } from './logger/logger.module';
+import { ConfigCommonModule } from './config';
 
 @Module({
   imports: [
+    ConfigCommonModule,
     MetricModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '123456',
-      database: 'metric',
-      autoLoadEntities: true,
-      synchronize: true,
-      logging: true,
-    }),
+    TypeOrmModule.forRoot(typeOrmConfig),
+    LoggerModule,
   ],
   controllers: [],
   providers: [],

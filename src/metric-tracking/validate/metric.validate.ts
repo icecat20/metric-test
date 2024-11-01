@@ -2,12 +2,14 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateMetricDto } from '../dto/create-matric.dto';
 import { GetChartMetricsDto } from '../dto/get-matric.dto';
 import { TYPE_METRIC, UNIT_DISTANCE, UNIT_TEMPER } from '../enum/type.enum';
+import { Logger } from 'nestjs-pino';
 
 @Injectable()
 export class MetricsValidate {
-  constructor() {}
+  constructor(private readonly logger: Logger) {}
 
   validateCreate(createMetricDto: CreateMetricDto) {
+    this.logger.log('validateCreate');
     if (createMetricDto.metricType === TYPE_METRIC.DISTANCE.toString()) {
       const validDistanceUnits = [
         UNIT_DISTANCE.CENTIMETER,
@@ -34,6 +36,7 @@ export class MetricsValidate {
   }
 
   validateListMetric(metricType: TYPE_METRIC) {
+    this.logger.log('validateListMetric');
     const validMetricType = [TYPE_METRIC.DISTANCE, TYPE_METRIC.TEMPERATURE];
     if (!validMetricType.includes(metricType as TYPE_METRIC)) {
       throw new BadRequestException(`Invalid TYPE_METRIC type: ${metricType}`);
@@ -42,6 +45,7 @@ export class MetricsValidate {
   }
 
   validateChartMetric(dto: GetChartMetricsDto): GetChartMetricsDto {
+    this.logger.log('validateChartMetric');
     if (dto.metricType === TYPE_METRIC.DISTANCE.toString()) {
       const validDistanceUnits = [
         UNIT_DISTANCE.CENTIMETER,

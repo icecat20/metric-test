@@ -6,6 +6,7 @@ import { MetricsValidate } from '../validate/metric.validate';
 import { TYPE_METRIC, UNIT_DISTANCE, UNIT_TEMPER } from '../enum/type.enum';
 import { GetChartMetricsDto } from '../dto/get-matric.dto';
 import { MetricsHelper } from '../helper/metric.helper';
+import { Logger } from 'nestjs-pino';
 
 @Injectable()
 export class MetricService {
@@ -13,10 +14,13 @@ export class MetricService {
     private readonly metricsRepository: MetricsRepository,
     private readonly metricsValidate: MetricsValidate,
     private readonly metricsHelp: MetricsHelper,
+    private readonly logger: Logger,
   ) {}
   async getListMetric(userId: string, type: TYPE_METRIC): Promise<Metric[]> {
+    this.logger.log('getListMetric');
     this.metricsValidate.validateListMetric(type);
     const user = await this.metricsRepository.findUserId(userId);
+    console.log(user);
     if (!user) {
       throw new NotFoundException(`User id not found`);
     }
@@ -47,6 +51,7 @@ export class MetricService {
   }
 
   async create(payload: CreateMetricDto) {
+    this.logger.log('create');
     this.metricsValidate.validateCreate(payload);
     if (payload.metricType === TYPE_METRIC.DISTANCE.toString()) {
       const value = this.metricsHelp.convertValueDistanceToMeter(
@@ -68,6 +73,7 @@ export class MetricService {
   }
 
   async getChart(dto: GetChartMetricsDto) {
+    this.logger.log('getChart');
     const payload = this.metricsValidate.validateChartMetric(dto);
     const user = await this.metricsRepository.findUserId(payload.userId);
     if (!user) {

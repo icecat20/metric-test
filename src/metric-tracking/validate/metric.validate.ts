@@ -18,6 +18,7 @@ export class MetricsValidate {
         UNIT_DISTANCE.INCH,
         UNIT_DISTANCE.YARN,
       ];
+
       if (!validDistanceUnits.includes(createMetricDto.unit as UNIT_DISTANCE)) {
         throw new BadRequestException(
           `Invalid unit  DISTANCE type: ${createMetricDto.unit}`,

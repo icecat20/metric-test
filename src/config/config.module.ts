@@ -5,6 +5,8 @@ import * as Joi from 'joi';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
       validationSchema: Joi.object({
         DB_HOST: Joi.string(),
         DB_PORT: Joi.string(),
@@ -17,4 +19,4 @@ import * as Joi from 'joi';
   providers: [ConfigService],
   exports: [ConfigService],
 })
-export class ConfigCommonModule {}
+export class ConfigCommonModule { }

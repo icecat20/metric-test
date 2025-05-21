@@ -1,7 +1,6 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateMetricDto } from '../dto/create-matric.dto';
-import { GetChartMetricsDto } from '../dto/get-matric.dto';
-import { TYPE_METRIC, UNIT_DISTANCE, UNIT_TEMPER } from '../enum/type.enum';
+import { Injectable } from '@nestjs/common';
+
+import { UNIT_DISTANCE, UNIT_TEMPER } from '../enum/type.enum';
 
 @Injectable()
 export class MetricsHelper {

@@ -1,12 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsString,
-  IsOptional,
-  IsDateString,
-  IsEnum,
-  IsNotEmpty,
-  IsNumber,
-} from 'class-validator';
+import { IsString, IsOptional, IsEnum, IsNotEmpty } from 'class-validator';
 import { TYPE_METRIC } from '../enum/type.enum';
 
 export class GetChartMetricsDto {

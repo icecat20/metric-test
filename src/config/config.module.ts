@@ -19,4 +19,4 @@ import * as Joi from 'joi';
   providers: [ConfigService],
   exports: [ConfigService],
 })
-export class ConfigCommonModule { }
+export class ConfigCommonModule {}

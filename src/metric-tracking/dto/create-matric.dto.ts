@@ -1,10 +1,9 @@
-import { ApiProperty, ApiResponse, ApiResponseProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsNotEmpty,
   IsNumber,
   IsString,
   IsDateString,
-  IsIn,
   IsEnum,
 } from 'class-validator';
 import { TYPE_METRIC } from '../enum/type.enum';

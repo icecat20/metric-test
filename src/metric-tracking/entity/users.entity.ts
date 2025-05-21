@@ -1,5 +1,4 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
-import { TYPE_METRIC } from '../enum/type.enum';
 import { Metric } from './metric.entity';
 
 @Entity('users')
